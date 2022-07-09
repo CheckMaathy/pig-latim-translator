@@ -38,6 +38,17 @@ def translate_words(words):
                     words[words.index(word)] = final_word
                     print(final_word, end=" ")
                     break
+        for letter in word:
+            if (letter in lower_vowels or letter in upper_vowels):
+                index = word.index(letter)
+                end_word = validate_ending_word(word)
+                first_letter = validate_captalized_letter(word[0:1], letter)
+                prefix = word[0:index].lower()
+                steam = word[index + 1:len(word)].lower()
+                final_word = first_letter + steam + prefix + end_word
+                words[words.index(word)] = final_word
+                print(final_word, end=" ")
+                break
     print("\n\nINFO: WORDS TRANSLATOR PROCESS FINISHED \n")
 
 
