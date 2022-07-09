@@ -2,9 +2,15 @@ print(">>>> PIG LATIN TRANSLATOR <<<<")
 
 lower_vowels = ['a', 'e', 'i', 'o', 'u', 'y']
 upper_vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
+ponctuation = ['.', ',', '!', '?']
 
 AY = 'ay'
 YAY = 'yay'
+
+COMMA = ','
+DOT = '.'
+EXCLAMATION = '!'
+INTERROGATION = '?'
 
 
 def validate_captalized_letter(first_letter, given_vowel):
@@ -21,6 +27,20 @@ def validate_ending_word(word):
         return AY
 
 
+def validate_word_ponctuation(word):
+    if word.__contains__(COMMA):
+        return word.replace(COMMA, "") + COMMA
+
+    elif word.__contains__(DOT):
+        return word.replace(DOT, "") + DOT
+
+    elif word.__contains__(EXCLAMATION):
+        return word.replace(EXCLAMATION, "") + EXCLAMATION
+
+    elif word.__contains__(INTERROGATION):
+        return word.replace(INTERROGATION, "") + INTERROGATION
+
+
 def translate_words(words):
     print("\nINFO: WORDS TRANSLATOR STARTED \n")
     for word in words:
@@ -35,6 +55,7 @@ def translate_words(words):
                     prefix = word[0:index].lower()
                     steam = word[index + 1:len(word)].lower()
                     final_word = first_letter + steam + prefix + end_word
+                    final_word = validate_word_ponctuation(final_word)
                     words[words.index(word)] = final_word
                     print(final_word, end=" ")
                     break
